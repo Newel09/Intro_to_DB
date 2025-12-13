@@ -1,4 +1,4 @@
-CREATE DATABASE alx_book_store;
+CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
 -- Table: Books
@@ -30,7 +30,7 @@ CREATE TABLE customers (
 CREATE TABLE orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT FOREIGN KEY REFERENCES customers(customer_id),
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    order_date DATE
 );
 
 -- Table: Order_Details
