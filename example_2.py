@@ -1,7 +1,8 @@
-import mysql.connector
+import os
+from mysql.connector import connect, Error
 
 # Replace with your connection details
-mydb = mysql.connector.connect(
+mydb = connect(
     host="localhost",
     user="root",
     password="14523512Newel",
