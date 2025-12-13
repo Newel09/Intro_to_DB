@@ -28,7 +28,7 @@ def main():
         )
         cursor = conn.cursor()
 
-        cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{DB_NAME}`;")
+        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME};")
         conn.commit()
 
         print(f"Database '{DB_NAME}' created successfully!")
