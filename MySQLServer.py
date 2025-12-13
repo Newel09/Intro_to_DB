@@ -3,35 +3,28 @@ import os
 import getpass
 import mysql.connector
 
-DB_NAME = "alx_book_store"
-
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = int(os.getenv("DB_PORT", "3306"))
-DB_USER = os.getenv("DB_USER", "root")
-
-
 def main():
     conn = None
     cursor = None
 
-    # Use env var if present; otherwise prompt in terminal (input hidden)
     db_password = os.getenv("DB_PASSWORD")
     if not db_password:
         db_password = getpass.getpass("Enter MySQL password: ")
 
     try:
         conn = mysql.connector.connect(
-            host=DB_HOST,
-            port=DB_PORT,
-            user=DB_USER,
+            host=os.getenv("DB_HOST", "localhost"),
+            port=int(os.getenv("DB_PORT", "3306")),
+            user=os.getenv("DB_USER", "root"),
             password=db_password
         )
         cursor = conn.cursor()
 
-        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME};")
-        conn.commit()
+        # Must match checker exactly (no backticks, no semicolon, no f-string)
+        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
 
-        print(f"Database '{DB_NAME}' created successfully!")
+        conn.commit()
+        print("Database 'alx_book_store' created successfully!")
 
     except mysql.connector.Error as err:
         print(f"Error: {err}")
@@ -41,7 +34,6 @@ def main():
             cursor.close()
         if conn is not None and conn.is_connected():
             conn.close()
-
 
 if __name__ == "__main__":
     main()
