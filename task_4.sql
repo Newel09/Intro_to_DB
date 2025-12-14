@@ -1,3 +1,7 @@
 -- showing the details of the tables in a database
 
-SHOW CREATE TABLE books;
+-- task_4.sql
+SELECT COLUMN_NAME, COLUMN_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = 'alx_book_store'
+  AND TABLE_NAME = 'Books';
